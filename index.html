@@ -9,7 +9,7 @@
 </head>
 <body>
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Tiantian&#39;s Cookie Simulator.</tw-noscript></noscript></tw-story>
-<tw-storydata name="Tiantian&#39;s Cookie Simulator" startnode="67" creator="Twine" creator-version="2.8.1" format="Harlowe" format-version="3.3.8" ifid="1239F7CD-907B-481E-A522-BCD73480BA01" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* 
+<tw-storydata name="Tiantian&#39;s Cookie Simulator" startnode="65" creator="Twine" creator-version="2.8.1" format="Harlowe" format-version="3.3.8" ifid="1239F7CD-907B-481E-A522-BCD73480BA01" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* 
 	Twine CSS Template
 	
 	Simple CSS Template to help Twine authors change 
@@ -220,19 +220,16 @@ You purchace some $Current_item from the store.
 What should you buy?</tw-passagedata><tw-passagedata pid="4" name="Appliance Store" tags="" position="900,1400" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Grocery Store&#39;&#39;]]
 What should you buy?
 (link: &quot;Screws&quot;)[
-	(set: $Current_item to &quot;Screw&quot;, $CI_Stat to &quot;Mixin&quot;)
+	(set: $Current_item to &quot;Screw&quot;, $CI_Stat to &quot;Mixin&quot;, $Cookie_attraction to $Cookie_attraction- 3, $Teeth_damage to true)
     (goto: &quot;AS Buy&quot;)]
 (link: &quot;Paint&quot;)[
-	(set: $Current_item to &quot;Paint&quot;, $CI_Stat to &quot;Liquid&quot;)
+	(set: $Current_item to &quot;Paint&quot;, $CI_Stat to &quot;Liquid&quot;, $Cookie_attraction to $Cookie_attraction +3, $Paint to true )
     (goto: &quot;AS Buy&quot;)]
 (link: &quot;Chainsaw&quot;)[
-	(set: $Current_item to &quot;Chainsaw&quot;, $CI_Stat to &quot;Solid&quot;)
+	(set: $Current_item to &quot;Chainsaw&quot;, $CI_Stat to &quot;Solid&quot;, $Teeth_damage to true)
     (goto: &quot;AS Buy&quot;)]
 (link: &quot;Metal Block&quot;)[
-	(set: $Current_item to &quot;Metal&quot;, $CI_Stat to &quot;Solid&quot;)
-    (goto: &quot;AS Buy&quot;)]
-(link: &quot;Paint&quot;)[
-	(set: $Current_item to &quot;Paint&quot;, $CI_Stat to &quot;Liquid&quot;)
+	(set: $Current_item to &quot;Metal&quot;, $CI_Stat to &quot;Solid&quot;, $Teeth_damage to true)
     (goto: &quot;AS Buy&quot;)]</tw-passagedata><tw-passagedata pid="5" name="BM buy" tags="" position="300,950" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;The black market&#39;&#39;]]
 Alright, here&#39;s some of your $Current_item. Anything else I can get you?
 [[Actually, yes please. -&gt;Visit the black market]]
@@ -264,12 +261,15 @@ You lay out your cookie dough and place it in the oven.
 You lay out your cookie dough and place it in the oven.
 
 (t8n:&quot;pulse&quot;) + (link: &quot;See Results&quot;)[
-  (if: $Explosive is true)[
+  (if: $Explosive is true)[(set:$Casualterrorism to true)
     Your oven violently explodes. Moments later, you stand in the middle of what used to be your house. However, your precious cookies remain intact.
   ]
-  (else-if: $Flammable is true)[
+  (else-if: $Flammable is true)[(set:$Casualarson to true)
     You notice a burning smell, only to notice that your entire kitchen is on fire. Although you lost half of your house, your cookies are safe.
   ]
+  (else-if:$nothing is true)[So... you just turn on your oven and leave it empty...? Fair enough. (set:$Dailydoseofnothing to true)]
+  (else-if:$dough is false)[(set: $Therules to true)So... they resemble nothing like cookies... but at least nothing too bad has happened. Right...?]
+    (else-if: $veg=$CI_stat_list&#39;s length)[(set: $Stayhealthy to true)Turns out you //accidentally// made a salad. Eh, it should be fine. ]
   (else:)[
     As you take out your cookies out of the oven, you realize they are cooked just like you wanted them to. Good job!
   ]
@@ -365,44 +365,44 @@ You look inside the cabinet to see if there&#39;s anything you can add.
 [[Go back to the pantry-&gt;The pantry]]</tw-passagedata><tw-passagedata pid="13" name="Cabinet" tags="" position="1125,925" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Cabinet&#39;&#39;]]
 You look inside the cabinet to see if there&#39;s anything you can add. 
 (link: &quot;Flour&quot;)[
-	(set: $Current_item to &quot;Flour&quot;, $CI_Stat to &quot;Powder&quot;, $Cookie_Attraction to $Cookie_attraction + 3)
+	(set: $Current_item to &quot;Flour&quot;, $CI_Stat to &quot;Powder&quot;, $Prop to $Prop + 3)
 (link: &quot;Chocolate&quot;)[
-	(set: $Current_item to &quot;Chocolate&quot;, $CI_Stat to &quot;Mixin&quot;)
+	(set: $Current_item to &quot;Chocolate&quot;, $CI_Stat to &quot;Mixin&quot;, $Cookie_Attraction to $Cookie_attraction + 6)
     (goto: &quot;Cabinet Get&quot;)]
 (link:&quot;Nuts&quot;)[
-	(set: $Current_item to &quot;Nuts&quot;, $CI_Stat to &quot;Mixin&quot;)
+	(set: $Current_item to &quot;Nuts&quot;, $CI_Stat to &quot;Mixin&quot;, $Cookie_Attraction to $Cookie_attraction + 3)
     (goto: &quot;Cabinet Get&quot;)]
     (goto: &quot;Cabinet Get&quot;)]
 (link:&quot;Peanut Butter&quot;)[
-	(set: $Current_item to &quot;Peanut butter&quot;, $CI_Stat to &quot;Mixin&quot;)
+	(set: $Current_item to &quot;Peanut butter&quot;, $CI_Stat to &quot;Mixin&quot;, $Cookie_Attraction to $Cookie_attraction + 2)
     (goto: &quot;Cabinet Get&quot;)]
 (link:&quot;Caramel&quot;)[
-	(set: $Current_item to &quot;Caramel&quot;, $CI_Stat to &quot;Mixin&quot;)
+	(set: $Current_item to &quot;Caramel&quot;, $CI_Stat to &quot;Mixin&quot;, $Cookie_Attraction to $Cookie_attraction + 5)
     (goto: &quot;Cabinet Get&quot;)]
 (link:&quot;Vanilla Flavour &quot;)[
-	(set: $Current_item to &quot;Vanilla Flavour &quot;, $CI_Stat to &quot;Mixin&quot;)
+	(set: $Current_item to &quot;Vanilla Flavour &quot;, $CI_Stat to &quot;Mixin&quot;, $Cookie_Attraction to $Cookie_attraction + 4)
     (goto: &quot;Cabinet Get&quot;)]
 (link:&quot;Food Colouring &quot;)[
-	(set: $Current_item to &quot;Food Colouring&quot;, $CI_Stat to &quot;Mixin&quot;)
+	(set: $Current_item to &quot;Food Colouring&quot;, $CI_Stat to &quot;Mixin&quot;, $Cookie_Attraction to $Cookie_attraction + 3)
     (goto: &quot;Cabinet Get&quot;)]
 (link: &quot;Sugar&quot;)[
-	(set: $Current_item to &quot;Sugar&quot;, $CI_Stat to &quot;Powder&quot;)
+	(set: $Current_item to &quot;Sugar&quot;, $CI_Stat to &quot;Powder&quot;, $Cookie_Attraction to $Cookie_attraction + 3, $Prop to $Prop +3)
     (goto: &quot;Cabinet Get&quot;)]
 (link:&quot;Corn Starch&quot;)[
 	(set: $Current_item to &quot;Starch&quot;, $CI_Stat to &quot;Powder&quot;)
     (goto: &quot;Cabinet Get&quot;)]
 ------
 (link:&quot;Some salt&quot;)[
-	(set: $Current_item to &quot;Salt&quot;, $CI_Stat to &quot;Powder&quot;)
+	(set: $Current_item to &quot;Salt&quot;, $CI_Stat to &quot;Powder&quot;, $Cookie_Attraction to $Cookie_attraction + 1)
     (goto: &quot;Cabinet Get&quot;)]
 (link:&quot;Shit ton of salt&quot;)[
-	(set: $Current_item to &quot;Shit ton of salt&quot;, $CI_Stat to &quot;Powder&quot;)
+	(set: $Current_item to &quot;Shit ton of salt&quot;, $CI_Stat to &quot;Powder&quot;, $Cookie_Attraction to $Cookie_attraction -3)
     (goto: &quot;Cabinet Get&quot;)]
 (link: &quot;Vinigar&quot;)[
-	(set: $Current_item to &quot;Vinigar&quot;, $CI_Stat to &quot;Liquid&quot;)
+	(set: $Current_item to &quot;Vinigar&quot;, $CI_Stat to &quot;Liquid&quot;, $Cookie_Attraction to $Cookie_attraction -2)
     (goto: &quot;Cabinet Get&quot;)]
 (link:&quot;Soy Sauce&quot;)[
-	(set: $Current_item to &quot;Soy Sauce&quot;, $CI_Stat to &quot;Liquid&quot;)
+	(set: $Current_item to &quot;Soy Sauce&quot;, $CI_Stat to &quot;Liquid&quot;, $Cookie_Attraction to $Cookie_attraction -4)
     (goto: &quot;Cabinet Get&quot;)]
 ------
 
@@ -518,29 +518,26 @@ What should you put in your cookies?
 What should you put in your cookies?
 
 (link: &quot;Milk&quot;)[
-	(set: $Current_item to &quot;Milk&quot;, $CI_Stat to &quot;Liquid&quot;)
+	(set: $Current_item to &quot;Milk&quot;, $CI_Stat to &quot;Liquid&quot;, $Prop to $Prop+3)
     (goto: &quot;Fridge Get&quot;)]
 (link:&quot;Eggs&quot;)[
-	(set: $Current_item to &quot;Eggs&quot;, $CI_Stat to &quot;Liquid&quot;)
+	(set: $Current_item to &quot;Eggs&quot;, $CI_Stat to &quot;Liquid&quot;, $Prop to $Prop+3)
     (goto: &quot;Fridge Get&quot;)]
 (link: &quot;Jam&quot;)[
-	(set: $Current_item to &quot;Jam&quot;, $CI_Stat to &quot;Mixin&quot;)
+	(set: $Current_item to &quot;Jam&quot;, $CI_Stat to &quot;Mixin&quot;, $Cookie_attraction to it+5)
     (goto: &quot;Fridge Get&quot;)]
 (link:&quot;Yogurt&quot;)[
-	(set: $Current_item to &quot;Yogurt&quot;, $CI_Stat to &quot;Liquid&quot;)
+	(set: $Current_item to &quot;Yogurt&quot;, $CI_Stat to &quot;Liquid&quot;, $Cookie_attraction to it+2)
     (goto: &quot;Fridge Get&quot;)]
 (link:&quot;Yeast&quot;)[
 	(set: $Current_item to &quot;Yeast&quot;, $CI_Stat to &quot;Special&quot;)
     (goto: &quot;Fridge Get&quot;)]
 ------
 (link:&quot;Some raw meat&quot;)[
-	(set: $Current_item to &quot;Raw Meat&quot;, $CI_Stat to &quot;Solid&quot;)
+	(set: $Current_item to &quot;Raw Meat&quot;, $CI_Stat to &quot;Solid&quot;, $Infection to true)
     (goto: &quot;Fridge Get&quot;)]
 (link:&quot;Some steak&quot;)[
 	(set: $Current_item to &quot;Steak&quot;, $CI_Stat to &quot;Solid&quot;)
-    (goto: &quot;Fridge Get&quot;)]
-(link: &quot;Random Fish&quot;)[
-	(set: $Current_item to &quot;Fish&quot;, $CI_Stat to &quot;Solid&quot;)
     (goto: &quot;Fridge Get&quot;)]
 ------
 
@@ -558,7 +555,7 @@ You grab some $Current_item from the fridge.
 You grab some $Current_item from the fridge. 
 🔎[[Look for more -&gt;Fridge]]
 ⏪[[Go back to the pantry-&gt;The pantry]]
-(set: $CI_stat_list to it + (a: $CI_Stat), $cookieing to it + (a: $Current_item) )
+(set: $CI_stat_list to $CI_stat_list + (a: $CI_Stat), $cookieing to it + (a: $Current_item) )
 (set: $Current_item to &quot;None&quot;, $CI_Stat to &quot;None&quot;)</tw-passagedata><tw-passagedata pid="27" name="GS Buy" tags="" position="800,1600" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Cabinet&#39;&#39;]]
 You purchace some $Current_item from the store. 
 🔎[[Look for more -&gt;Grocery Store]]
@@ -609,36 +606,36 @@ What should you buy?
 What should you buy?
 &#39;&#39;Fresh Produce Section&#39;&#39;
 (link: &quot;Apples&quot;)[
-	(set: $Current_item to &quot;Apples&quot;, $CI_Stat to &quot;Mixin&quot;)
+	(set: $Current_item to &quot;Apples&quot;, $CI_Stat to &quot;Mixin&quot;, $veg to $veg+1, $Cookie_attraction to $Cookie_attraction +3)
     (goto: &quot;GS Buy&quot;)]
 (link: &quot;Bananas&quot;)[
-	(set: $Current_item to &quot;Bananas&quot;, $CI_Stat to &quot;Mixin&quot;)
+	(set: $Current_item to &quot;Bananas&quot;, $CI_Stat to &quot;Mixin&quot;, $veg to $veg+1, $Cookie_attraction to $Cookie_attraction +2)
     (goto: &quot;GS Buy&quot;)]
 (link: &quot;Spinach&quot;)[
-	(set: $Current_item to &quot;Spinach&quot;, $CI_Stat to &quot;Mixin&quot;)
+	(set: $Current_item to &quot;Spinach&quot;, $CI_Stat to &quot;Mixin&quot;, $veg to $veg+1, $Cookie_attraction to $Cookie_attraction-1)
     (goto: &quot;GS Buy&quot;)]
 (link: &quot;Tomato&quot;)[
-	(set: $Current_item to &quot;Tomato&quot;, $CI_Stat to &quot;Mixin&quot;)
+	(set: $Current_item to &quot;Tomato&quot;, $CI_Stat to &quot;Mixin&quot;, $veg to $veg+1, )
     (goto: &quot;GS Buy&quot;)]
 (link: &quot;Pumpkin Slices&quot;)[
-	(set: $Current_item to &quot;Pumpkin&quot;, $CI_Stat to &quot;Mixin&quot;)
+	(set: $Current_item to &quot;Pumpkin&quot;, $CI_Stat to &quot;Mixin&quot;, $Cookie_attraction to $Cookie_attraction+2)
     (goto: &quot;GS Buy&quot;)]
 ----
 &#39;&#39;Snack Section&#39;&#39;
 (link: &quot;Cereal&quot;)[
-	(set: $Current_item to &quot;Cereal&quot;, $CI_Stat to &quot;Mixin&quot;)
+	(set: $Current_item to &quot;Cereal&quot;, $CI_Stat to &quot;Mixin&quot;, $Cookie_attraction to $Cookie_attraction +3)
     (goto: &quot;GS Buy&quot;)]
 (link: &quot;Candy Chunks&quot;)[
-	(set: $Current_item to &quot;Candy&quot;, $CI_Stat to &quot;Mixin&quot;)
+	(set: $Current_item to &quot;Candy&quot;, $CI_Stat to &quot;Mixin&quot;, $Cookie_attraction to $Cookie_attraction +6)
     (goto: &quot;GS Buy&quot;)]
 (link: &quot;Granola&quot;)[
-	(set: $Current_item to &quot;Granola&quot;, $CI_Stat to &quot;Mixin&quot;)
+	(set: $Current_item to &quot;Granola&quot;, $CI_Stat to &quot;Mixin&quot; ,$Cookie_attraction to $Cookie_attraction+4)
     (goto: &quot;GS Buy&quot;)]
 (link: &quot;Oatmeal&quot;)[
-	(set: $Current_item to &quot;Oatmeal&quot;, $CI_Stat to &quot;Solid&quot;)
+	(set: $Current_item to &quot;Oatmeal&quot;, $CI_Stat to &quot;Solid&quot; ,$Cookie_attraction to $Cookie_attraction+3)
     (goto: &quot;GS Buy&quot;)]
 (link: &quot;Random Fish&quot;)[
-	(set: $Current_item to &quot;Fish&quot;, $CI_Stat to &quot;Solid&quot;)
+	(set: $Current_item to &quot;Fish&quot;, $CI_Stat to &quot;Solid&quot;,$Cookie_attraction to $Cookie_attraction-2)
     (goto: &quot;GS Buy&quot;)]</tw-passagedata><tw-passagedata pid="31" name="Head to the Kitchen" tags="" position="700,575" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;The kitchen&#39;&#39;]]
 You are in your kitchen. What do you do?
 [[Look for useful ingredients]]
@@ -667,37 +664,39 @@ You are in your kitchen. What do you do?
 ----
 ✅[[Done selecting the ingredients!-&gt;Mix the Dough]]
 ----
-🎖[[Look at your archivements]]</tw-passagedata><tw-passagedata pid="34" name="In a shop" tags="" position="762.5,950" size="100,100">(link:&quot;Pumpkins&quot;)[
-	(set: $Current_item to &quot;Pumpkin&quot;, $CI_Stat to &quot;Solid&quot;)
-    (goto: &quot;Shop Get&quot;)]
-(link:&quot;Soy Sauce&quot;)[
-	(set: $Current_item to &quot;Soy Sauce&quot;, $CI_Stat to &quot;Liquid&quot;)
-    (goto: &quot;Cabinet Get&quot;)]
-(link:&quot;Soy Sauce&quot;)[
-	(set: $Current_item to &quot;Soy Sauce&quot;, $CI_Stat to &quot;Liquid&quot;)
-    (goto: &quot;Cabinet Get&quot;)]
-(link:&quot;Soy Sauce&quot;)[
-	(set: $Current_item to &quot;Soy Sauce&quot;, $CI_Stat to &quot;Liquid&quot;)
-    (goto: &quot;Cabinet Get&quot;)]
-(link:&quot;Soy Sauce&quot;)[
-	(set: $Current_item to &quot;Soy Sauce&quot;, $CI_Stat to &quot;Liquid&quot;)
-    (goto: &quot;Cabinet Get&quot;)]
-(link:&quot;Soy Sauce&quot;)[
-	(set: $Current_item to &quot;Soy Sauce&quot;, $CI_Stat to &quot;Liquid&quot;)
-    (goto: &quot;Cabinet Get&quot;)]
-(link:&quot;Soy Sauce&quot;)[
-	(set: $Current_item to &quot;Soy Sauce&quot;, $CI_Stat to &quot;Liquid&quot;)
-    (goto: &quot;Cabinet Get&quot;)]
-(link:&quot;Soy Sauce&quot;)[
-	(set: $Current_item to &quot;Soy Sauce&quot;, $CI_Stat to &quot;Liquid&quot;)
-    (goto: &quot;Cabinet Get&quot;)]
-(link:&quot;Soy Sauce&quot;)[
-	(set: $Current_item to &quot;Soy Sauce&quot;, $CI_Stat to &quot;Liquid&quot;)
-    (goto: &quot;Cabinet Get&quot;)]</tw-passagedata><tw-passagedata pid="35" name="In a shop" tags="" position="762.5,950" size="100,100">Which shop would you like to go to?
+🎖[[Look at your archivements]]</tw-passagedata><tw-passagedata pid="34" name="In a shop" tags="" position="800,925" size="100,100">Which shop would you like to go to?
 [[Grocery Store]]
-[[Appliance Store]]</tw-passagedata><tw-passagedata pid="36" name="In a shop" tags="" position="762.5,950" size="100,100">Which shop would you like to go to?
-[[Grocery Store]]
-[[Appliance Store]]</tw-passagedata><tw-passagedata pid="37" name="Look at your archivements" tags="" position="100,600" size="100,100"></tw-passagedata><tw-passagedata pid="38" name="Look at your archivements" tags="" position="100,600" size="100,100">UNDER CONSTRUCTION!</tw-passagedata><tw-passagedata pid="39" name="Look for useful ingredients" tags="" position="700,700" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Gathering Ingredients&#39;&#39;]]
+[[Appliance Store]]</tw-passagedata><tw-passagedata pid="35" name="Look at your archivements" tags="" position="100,600" size="100,100"></tw-passagedata><tw-passagedata pid="36" name="Look at your archivements" tags="" position="100,600" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Your Archivements&#39;&#39;]]
+&#39;&#39;First Cookie&#39;&#39;: (if:$Firstcookie is true)[Make your first cookie] (else:)[Locked]
+&#39;&#39;Fifth Cookie&#39;&#39;: (if:$Fithcookie is true)[Make your fifth cookie] (else:)[Locked]
+&#39;&#39;Tenth Cookie&#39;&#39;: (if:$Tenthcookie is true)[Make your tenth cookie] (else:)[Locked]
+&#39;&#39;Fiftieth Cookie&#39;&#39;: (if:$Fiftiethcookie is true)[Make your fiftieth cookie] (else:)[Locked]
+&#39;&#39;Hundredth Cookie&#39;&#39;: (if:$Hundredthcookie is true)[Make your hundredth cookie] (else:)[Locked]
+&#39;&#39;Casual Arson&#39;&#39;: (if:$Casualarson is true)[Burn down your kitchen] (else:)[Locked]
+&#39;&#39;Casual Terrorism&#39;&#39;: (if:$Casualterrorism is true)[Blow up your kitchen] (else:)[Locked]
+&#39;&#39;Tasty Cookie&#39;&#39;: (if:$Tastycookie is true)[Make a cookie that satisfies George] (else:)[Locked]
+&#39;&#39;Very Tasty Cookie&#39;&#39;: (if:$Verytastycookie is true)[Make a cookie that wins a record] (else:)[Locked]
+&#39;&#39;Bad Cookie&#39;&#39;: (if:$Badcookie is true)[Make a bad cookie] (else:)[Locked]
+&#39;&#39;Awful Cookie&#39;&#39;: (if:$Awfulcookie is true)[Make a REALLY bad cookie] (else:)[Locked]
+&#39;&#39;Daily Dose of Nothing&#39;&#39;: (if:$Dailydoseofnothing is true)[Give him Nothing] (else:)[Locked]
+&#39;&#39;The Rules Don&#39;t Apply to Me&#39;&#39;: (if:$Therules is true)[Make a non-cookie] (else:)[Locked]
+&#39;&#39;Stay Healthy!&#39;&#39;: (if:$Stayhealthy is true)[Make a salad] (else:)[Locked]
+&#39;&#39;Goodbye Friend&#39;&#39;: (if:$Goodbyefriend is true)[Kill George once] (else:)[Locked]
+&#39;&#39;Next Please&#39;&#39;! :(if:$Nextplease is true)[Kill George 10 times] (else:)[Locked]
+&#39;&#39;Trial and Error&#39;&#39;: (if:$Trialanderror is true)[Kill George 50 times] (else:)[Locked]
+&#39;&#39;Sacrifices Must be Made&#39;&#39;: (if:$Sacrificesmustbemade is true)[Kill George 100 times] (else:)[Locked]
+&#39;&#39;Nuclear Threat&#39;&#39;: (if:$Nuclearthreat is true)[Create the nuclear cookie] (else:)[Locked]
+&#39;&#39;COVID-69420&#39;&#39;: (if:$COVID is true)[Give George COVID-69420] (else:)[Locked]
+&#39;&#39;He&#39;s Gonna Need a Dentist&#39;&#39;: (if:$Dentist is true)[Break George&#39;s teeth] (else:)[Locked]
+&#39;&#39;Addictive Cookies&#39;&#39;: (if:$Addictive is true)[Get George addicted to your cookies] (else:)[Locked]
+[&#39;&#39;Extra Cookie&#39;&#39;: (if:$Extracookie is true)[Make a cookie with more than 10 ingredients] (else:)[Locked]
+[&#39;&#39;Super Cookie&#39;&#39;: (if:$Supercookie is true)[Super Cookie: Make a cookie with more than 25 ingredients] (else:)[Locked]
+&#39;&#39;Mega Cookie: &#39;&#39;(if:$Megacookie is true)[Make a cookie with more than 50 ingredients] (else:)[Locked]
+&#39;&#39;Ultra Cookie: &#39;&#39;(if:$Ultracookie is true)[Make a cookie with more than 100 Ingredients ] (else:)[Locked]
+&#39;&#39;Hyper Cookie&#39;&#39;: (if:$Hypercookie is true)[Make a cookie with more than... 200?!] (else:)[Locked]
+&#39;&#39;Minimalism&#39;&#39;: (if:$Minimalism is true)[Make a cookie with only one ingredient] (else:)[Locked]
+
+</tw-passagedata><tw-passagedata pid="37" name="Look for useful ingredients" tags="" position="700,700" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Gathering Ingredients&#39;&#39;]]
 Where do you want to look for your ingredients?
 
 [[The pantry]]
@@ -705,7 +704,7 @@ Where do you want to look for your ingredients?
 [[Outside]]
 [[In a shop]]
 [[The black market-&gt;Visit the black market]]
-[[Return to the kitchen. -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="40" name="Look for useful ingredients" tags="" position="700,700" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Gathering Ingredients&#39;&#39;]]
+[[Return to the kitchen. -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="38" name="Look for useful ingredients" tags="" position="700,700" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Gathering Ingredients&#39;&#39;]]
 Where do you want to look for your ingredients?
 🔪[[Around the kitchen-&gt;The pantry]]
 ✏️[[Your room]]
@@ -713,7 +712,7 @@ Where do you want to look for your ingredients?
 🏬[[In a shop]]
 💰[[The black market-&gt;Visit the black market]]
 ----
-⏪[[Return to the kitchen. -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="41" name="Look for useful ingredients" tags="" position="700,700" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Gathering Ingredients&#39;&#39;]]
+⏪[[Return to the kitchen. -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="39" name="Look for useful ingredients" tags="" position="700,700" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Gathering Ingredients&#39;&#39;]]
 Where do you want to look for your ingredients?
 🔪[[Around the kitchen-&gt;The pantry]]
 ✏️[[Your room]]
@@ -721,7 +720,10 @@ Where do you want to look for your ingredients?
 🏬[[In a shop]]
 💰[[The black market-&gt;Visit the black market]]
 ----
-⏪[[Return to the kitchen. -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="42" name="Mix the Dough" tags="" position="1000,600" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Mixing Dough&#39;&#39;]]
+⏪[[Return to the kitchen. -&gt;Head to the Kitchen]]
+(if:$Doughmaster is true)[(link: &quot;Make some cookie dough&quot;)
+	(set: $CI_stat_list to it + &quot;Liquid&quot;, $cookieing to it + &quot;Milk&quot;)
+]</tw-passagedata><tw-passagedata pid="40" name="Mix the Dough" tags="" position="1000,600" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Mixing Dough&#39;&#39;]]
 You put all of your ingredients in a large bowl and mix them together.
 ----
 (if: $CI_stat_list&#39;s length &lt; 1)[
@@ -739,7 +741,7 @@ You put all of your ingredients in a large bowl and mix them together.
 		[[Bake]]]
 	(else:)[
 		Although it&#39;s far from being a dough, you manage to make &quot;something.&quot;
-		[[Bake]]]]</tw-passagedata><tw-passagedata pid="43" name="Mix the Dough" tags="判定プログラム" position="1000,600" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Mixing Dough&#39;&#39;]]
+		[[Bake]]]]</tw-passagedata><tw-passagedata pid="41" name="Mix the Dough" tags="判定プログラム" position="1000,600" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Mixing Dough&#39;&#39;]]
 You put all of your ingredients in a large bowl and mix them together.
 ----
 (if: $CI_stat_list&#39;s length &lt; 1)[	You end up mixing nothing. How fun! 	[[Bake]]] (else:)[ 	(if: $CI_stat_list contains &#39;Solid&#39; and $CI_stat_list contains &quot;Powder&quot; and $CI_stat_list contains &quot;Liquid&quot;)[ 		You succeed in making a stable dough and add some ornaments to it. Good job!		[[Bake]]]	(else-if: $CI_stat_list contains &#39;Powder&#39; and $CI_stat_list contains &quot;Liquid&quot; and $CI_stat_list does not contain &quot;Solid&quot;)[		You succeed in making a stable dough. Good job!		[[Bake]]]	(else-if: $CI_stat_list does not contain &quot;Liquid&quot;)[		You&#39;re mixing a bunch of solid ingredients and expecting it to become dough. Not the best idea.		[[Bake]]]	(else:)[		Although it&#39;s far from being a dough, you manage to make &quot;something.&quot;		[[Bake]]]]
@@ -747,15 +749,49 @@ You put all of your ingredients in a large bowl and mix them together.
     (unless: $cookieing_final contains _item)[
         (set: $cookieing_final to it + (a: _item))
     ]
-]</tw-passagedata><tw-passagedata pid="44" name="Mix the Dough" tags="判定プログラム" position="1000,600" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Mixing Dough&#39;&#39;]]
+]</tw-passagedata><tw-passagedata pid="42" name="Mix the Dough" tags="判定プログラム" position="1000,600" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;Mixing Dough&#39;]]
 You put all of your ingredients in a large bowl and mix them together.
 ----
-(if: $CI_stat_list&#39;s length &lt; 1)[	You end up mixing nothing. How fun! 	[[Bake]](set:$nothing to true)] (else:)[ 	(if: $CI_stat_list contains &#39;Solid&#39; and $CI_stat_list contains &quot;Powder&quot; and $CI_stat_list contains &quot;Liquid&quot;)[ 		You succeed in making a stable dough and add some ornaments to it. Good job!		[[Bake]](set:$dough to true)]	(else-if: $CI_stat_list contains &#39;Powder&#39; and $CI_stat_list contains &quot;Liquid&quot; and $CI_stat_list does not contain &quot;Solid&quot;)[		You succeed in making a stable dough. Good job!		[[Bake]](set:$dough to true)]	(else-if: $CI_stat_list does not contain &quot;Liquid&quot;)[		You&#39;re mixing a bunch of solid ingredients and expecting it to become dough. Not the best idea.		[[Bake]]]	(else-if: $CI_stat_list contains&quot;Liquid&quot;)[		You create a &quot;potion&quot;-seeming-like substance, not really sure if this is drinkable or not. George will have to test. 		[[Bake]]](else:)[		Although it&#39;s far from being a dough, you manage to make &quot;something.&quot;		[[Bake]]]]
-(set: $cookieing_final to (a:))(for: each _item, ...$cookieing)[
-    (unless: $cookieing_final contains _item)[
-        (set: $cookieing_final to it + (a: _item))
-    ]
-]</tw-passagedata><tw-passagedata pid="45" name="Outside" tags="" position="575,950" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Outside&#39;&#39;]]
+
+(if: $CI_stat_list&#39;s length &lt; 1)[
+  You end up mixing nothing. How fun! 
+  [[Bake]](set:$nothing to true)
+] 
+(else:)[  
+  (if: $CI_stat_list contains &#39;Solid&#39; and $CI_stat_list contains &quot;Powder&quot; and $CI_stat_list contains &quot;Liquid&quot;)[
+    You succeed in making a stable dough and add some goodies to it. Good job!
+    [[Bake]](set:$dough to true)
+  ]
+  (else-if: $CI_stat_list contains &#39;Powder&#39; and $CI_stat_list contains &quot;Liquid&quot; and $CI_stat_list does not contain &quot;Solid&quot;)[
+    You succeed in making a stable dough. Good job!
+    [[Bake]](set:$dough to true)
+  ]
+  (else-if: $CI_stat_list does not contain &quot;Liquid&quot;)[
+    You&#39;re mixing a bunch of solid ingredients and expecting it to become dough. Not the best idea.
+    [[Bake]]
+    
+  ]
+  (else-if: $Prop&gt;6)[
+    It resembles something like a cookie...? You&#39;re not really sure. 
+    [[Bake]]
+  ]
+  (else-if: $CI_stat_list contains &quot;Liquid&quot;)[
+    You create a &quot;potion&quot;-seeming-like substance, not really sure if this is drinkable or not. George will have to test.
+    [[Bake]]
+  ]
+  (else:)[
+    Although it&#39;s far from being a dough, you manage to make &quot;something.&quot;
+    [[Bake]]
+  ]
+]
+
+(set: $cookieing_final to (a:))
+(for: each _item, ...$cookieing)[
+  (unless: $cookieing_final contains _item)[
+    (set: $cookieing_final to it + (a: _item))
+  ]
+]
+</tw-passagedata><tw-passagedata pid="43" name="Outside" tags="" position="575,950" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Outside&#39;&#39;]]
 You find many different candidates for your cookies outside. 
 (link:&quot;Berries&quot;)[
 	(set: $Current_item to &quot;Berries&quot;, $CI_Stat to &quot;Solid&quot;, $Cookie_Attraction to $Cookie_attraction + 5)
@@ -776,21 +812,21 @@ You find many different candidates for your cookies outside.
 	(set: $Current_item to &quot;Gasoline&quot;, $CI_Stat to &quot;Liquid&quot;, $Flammable to true, $Gasoline_overdose to true)
     (goto: &quot;Outside Buy&quot;)]
     
-[[Head home -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="46" name="Outside Buy" tags="" position="650,1125" size="100,100">You grab some $Current_item. Hope nobody notices. 
+[[Head home -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="44" name="Outside Buy" tags="" position="650,1125" size="100,100">You grab some $Current_item. Hope nobody notices. 
 [[Search for some more -&gt;Outside]]
 [[Go back home-&gt;Head to the Kitchen]]
 (set: $CI_stat_list to it + (a: $CI_Stat), $cookieing to it + (a: $Current_item), $Effect_list to it + (a: $Effects))
-(set: $Current_item to &quot;None&quot;, $CI_Stat to &quot;None&quot;, $Status to &quot;None&quot;)</tw-passagedata><tw-passagedata pid="47" name="Outside Buy" tags="" position="650,1125" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Outside&#39;&#39;]]
+(set: $Current_item to &quot;None&quot;, $CI_Stat to &quot;None&quot;, $Status to &quot;None&quot;)</tw-passagedata><tw-passagedata pid="45" name="Outside Buy" tags="" position="650,1125" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Outside&#39;&#39;]]
 You grab some $Current_item. Hope nobody notices. 
 🔎[[Search for some more -&gt;Outside]]
 🏠[[Go back home-&gt;Head to the Kitchen]]
 (set: $CI_stat_list to it + (a: $CI_Stat), $cookieing to it + (a: $Current_item))
-(set: $Current_item to &quot;None&quot;, $CI_Stat to &quot;None&quot;)</tw-passagedata><tw-passagedata pid="48" name="Outside Buy" tags="" position="650,1125" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Outside&#39;&#39;]]
+(set: $Current_item to &quot;None&quot;, $CI_Stat to &quot;None&quot;)</tw-passagedata><tw-passagedata pid="46" name="Outside Buy" tags="" position="650,1125" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Outside&#39;&#39;]]
 You grab some $Current_item. Hope nobody notices. 
 🔎[[Search for some more -&gt;Outside]]
 🏠[[Go back home-&gt;Head to the Kitchen]]
 (set: $CI_stat_list to it + (a: $CI_Stat), $cookieing to it + (a: $Current_item))
-(set: $Current_item to &quot;None&quot;, $CI_Stat to &quot;None&quot;)</tw-passagedata><tw-passagedata pid="49" name="Remove some ingredients" tags="" position="1000,400" size="100,100">What ing</tw-passagedata><tw-passagedata pid="50" name="Remove some ingredients" tags="" position="1000,400" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Remove Ingredients&#39;&#39;]]
+(set: $Current_item to &quot;None&quot;, $CI_Stat to &quot;None&quot;)</tw-passagedata><tw-passagedata pid="47" name="Remove some ingredients" tags="" position="1000,400" size="100,100">What ing</tw-passagedata><tw-passagedata pid="48" name="Remove some ingredients" tags="" position="1000,400" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Remove Ingredients&#39;&#39;]]
 Which item would you like to remove from your list?
 (if: $cookieing&#39;s length &gt; 0)[
     (for: each _ing, ...$cookieing)
@@ -801,7 +837,7 @@ Which item would you like to remove from your list?
         $cookieing to $cookieing - (a: $ingToRemove))]]]
     
 (else:)[You have no items in your list.]
-[[Back-&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="51" name="Remove some ingredients" tags="" position="1000,400" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Remove Ingredients&#39;&#39;]]
+[[Back-&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="49" name="Remove some ingredients" tags="" position="1000,400" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Remove Ingredients&#39;&#39;]]
 Which item would you like to remove from your list?
 (if: $cookieing&#39;s length &gt; 0)[
     (for: each _ing, ...$cookieing)
@@ -812,19 +848,19 @@ Which item would you like to remove from your list?
         $cookieing to $cookieing - (a: $ingToRemove))]]]
     
 (else:)[You have no items in your list.]
-[[Back-&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="52" name="Reset Ingredients" tags="" position="400,400" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;The kitchen&#39;&#39;]]
+[[Back-&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="50" name="Reset Ingredients" tags="" position="400,400" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;The kitchen&#39;&#39;]]
 You throw everything away in your bowl and try again. 
 (set: $Current_item to &quot;None&quot;, $CI_Stat to &quot;None&quot;, $Status to &quot;None&quot;, $Taste to &quot;None&quot;)(set: $CI_stat_list to (a:), $cookieing to (a:), $Effect_list to (a:))(set:$Flammable to false, $Tooth_Damage to false, $Explosive to false)
-(click-goto:?page,&quot;Head to the Kitchen&quot;)</tw-passagedata><tw-passagedata pid="53" name="Reset Ingredients" tags="" position="400,400" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;The kitchen&#39;&#39;]]
+(click-goto:?page,&quot;Head to the Kitchen&quot;)</tw-passagedata><tw-passagedata pid="51" name="Reset Ingredients" tags="" position="400,400" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;The kitchen&#39;&#39;]]
 You throw everything away in your bowl and try again. 
 (set: $Current_item to &quot;None&quot;, $CI_Stat to &quot;None&quot;)(set: $CI_stat_list to (a:), $cookieing to (a:))
 (set:$Flammable to false, $Teeth_damage to false, $Explosive to false)
-(click-goto:?page,&quot;Head to the Kitchen&quot;)</tw-passagedata><tw-passagedata pid="54" name="Reset Ingredients" tags="" position="400,400" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;The kitchen&#39;&#39;]]
+(click-goto:?page,&quot;Head to the Kitchen&quot;)</tw-passagedata><tw-passagedata pid="52" name="Reset Ingredients" tags="" position="400,400" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;The kitchen&#39;&#39;]]
 You throw everything away in your bowl and try again. 
 (set: $Current_item to &quot;None&quot;, $CI_Stat to &quot;None&quot;)(set: $CI_stat_list to (a:), $cookieing to (a:))
-(set:$Flammable to false, $Teeth_damage to false, $Explosive to false)
-(click-goto:?page,&quot;Head to the Kitchen&quot;)</tw-passagedata><tw-passagedata pid="55" name="Results" tags="" position="1700,600" size="100,100">(print: $Effect_list)
-[[Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="56" name="Results" tags="判定プログラム" position="1700,600" size="100,100">(set: $result to &quot;&quot;, $cookiename to &quot;&quot;, $sep to &quot;-&quot;)
+(set:$Flammable to false, $Teeth_damage to false, $Explosive to false, $veg to 0)
+(click-goto:?page,&quot;Head to the Kitchen&quot;)</tw-passagedata><tw-passagedata pid="53" name="Results" tags="" position="1700,600" size="100,100">(print: $Effect_list)
+[[Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="54" name="Results" tags="判定プログラム" position="1700,600" size="100,100">(set: $result to &quot;&quot;, $cookiename to &quot;&quot;, $sep to &quot;-&quot;)
 
 (for: each _word, ...$cookieing_final)[
 	(if: _word is not &quot;flour&quot; and _word is not &quot;milk&quot; and _word is not &quot;egg&quot;)[
@@ -846,23 +882,44 @@ You have created a: $cookiename
 (else-if: $hosp is true)[[George has been sent to the hospital. I hope he becomes better.|Start Game]]
 (else:)[[George seems fine. Good job!|Start Game]]
 
-[[Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="57" name="Results" tags="判定プログラム" position="1700,600" size="100,100">(if: $Explosive is true)[
-  (set: $Death_count to it + 1)
-  After a few minutes, George violently explodes and dies. You clean up what&#39;s left of him. Gross.](else-if: $Gasoline_overdose or $Infection or $COVID23 is true)[  (set: $Death_count to it + 1)
-  George suffers from a severe illness and dies in the next few days. Let&#39;s pray it wasn&#39;t the cookie that killed him.](else-if: $Teeth_damage is true)[
-  So, turns out something you put in was a little too hard... and you ended up breaking a couple of his teeth. Poor fellow.](else-if: $Cookie_attraction &lt; 0)[
-  Well, uh, yeah... that was quite an interesting taste... welluhgoodbyegottagotothebathroomrealqui... Seems like he enjoyed your cookie.](else:)[&quot;Oh wow, you actually made these? Surprising how you can cook we-&quot; Guess he&#39;s satisfied...]
+[[Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="55" name="Results" tags="判定プログラム" position="1700,600" size="100,100">(if: $Explosive is true)[
+  (set: $Death_count to it + 1)  (set: $Cookie_count to it + 1)
+  After a few minutes, George violently explodes and dies. You clean up what&#39;s left of him. Gross.](else-if: $Gasoline_overdose or $Infection or $COVID23 is true)[  (set: $Death_count to it + 1) George suffers from a severe illness and dies in the next few days. Let&#39;s pray it wasn&#39;t the cookie that killed him.]&#39;&#39;(else-if: $Radioactive is true)[  (set: $Death_count to it + 1) So, turns out you accidentally made mutant George. He now has neon green skin and eats people&#39;s faces off. Oopsies. (set: $Nuclearthreat to true)]&#39;&#39;(else-if: $Teeth_damage is true)[So, turns out something you put in was a little too hard... and you ended up breaking a couple of his teeth. Poor fellow.](else-if: $Drugs is true)[&quot;OMGILOVEDTHATCOOKIECANIHAVESOMEMORE?!&quot; Maybe getting your friends addicted to your cookies is a way to make money...] (else-if: $Cookie_attraction &lt; 0)[Well, uh, yeah... that was quite an interesting taste...welluhgoodbyegottagotothebathroomrealqui... Seems like he enjoyed your cookie.](else-if: $Cookie_attraction&lt;5)[&quot;Are you sure these are cookies...? They aren&#39;t THAT bad but...&quot; Yeah, you&#39;re not sure either.](else-if: $Cookie_attraction&lt;5)[&quot;Oh, you actually made these? Surprising how it actually tastes like cookies-&quot; Guess he&#39;s satisfied...&quot; ](else-if: $Cookie_attraction&gt;5)[&quot;Oh wow, you made these! They taste great!&quot; I guess getting compliemented is good, but it&#39;s not as fun as... you know.]
+
 
 ✅[[Time to make another cookie!-&gt;Start Game]]
-</tw-passagedata><tw-passagedata pid="58" name="Room Get" tags="" position="1400,1000" size="100,100"></tw-passagedata><tw-passagedata pid="59" name="Room Get" tags="" position="1400,1000" size="100,100">You get your $Current_item from your room. 
+(if:$Prop&gt;9)[(set: $Doughmaster to true)You have mastered the arts of dough making, so you can now add basic dough ingredience with ease. ]
+
+(if:$Cookie_count=1)[(set: $Firstcookie to true)]
+(if:$Cookie_count=5)[(set: $Fithcookie to true)]
+(if:$Cookie_count=10)[(set: $Tenthcookie to true)]
+(if:$Cookie_count=50)[(set: $Fiftiethcookie to true)]
+(if:$Cookie_count=100)[(set: $Hundredthcookie to true)]
+(if:$Cookie_attraction&gt;5)[(set: $Tastycookie to true)]
+(if:$Cookie_attraction&gt;20)[(set: $Verytastycookie to true)]
+(if:$Cookie_attraction&gt;-5)[(set: $Badcookie to true)]
+(if:$Cookie_attraction&gt;-20)[(set: $Awfulcookie to true)]
+(if:$Death_count=1)[(set: $Goodbyefriend to true)]
+(if:$Death_count=10)[(set: $Nextplease to true)]
+(if:$Death_count=50)[(set: $Trialanderror to true)]
+(if:$Death_count=100)[(set: $Sacrificesmustbemade to true)]
+(if:$Teeth_damage=true)[(set: $Dentist to true)]
+(if:$Drugs=true)[(set: $Addictive to true)]
+(if: $CI_stat_list&#39;s length = 1)[(set:$Minimalism to true)]
+(if: $CI_stat_list&#39;s length &gt;5)[(set:$Extracookie to true)]
+(if: $CI_stat_list&#39;s length &gt;25)[(set:$Supercookie to true)]
+(if: $CI_stat_list&#39;s length &gt;50)[(set:$Megacookie to true)]
+(if: $CI_stat_list&#39;s length &gt;100)[(set:$Ultracookie to true)]
+(if: $CI_stat_list&#39;s length &gt;200)[(set:$Hypercookie to true)]
+</tw-passagedata><tw-passagedata pid="56" name="Room Get" tags="" position="1400,1000" size="100,100"></tw-passagedata><tw-passagedata pid="57" name="Room Get" tags="" position="1400,1000" size="100,100">You get your $Current_item from your room. 
 [[Look for more -&gt;Your room]]
 [[Go back-&gt;Head to the Kitchen]]
 (set: $CI_stat_list to it + (a: $CI_Stat), $cookieing to it + (a: $Current_item))
-(set: $Current_item to &quot;None&quot;, $CI_Stat to &quot;None&quot;)</tw-passagedata><tw-passagedata pid="60" name="Room Get" tags="" position="1400,1000" size="100,100">You get your $Current_item from your room. 
+(set: $Current_item to &quot;None&quot;, $CI_Stat to &quot;None&quot;)</tw-passagedata><tw-passagedata pid="58" name="Room Get" tags="" position="1400,1000" size="100,100">You get your $Current_item from your room. 
 [[Look for more -&gt;Your room]]
 [[Go back-&gt;Head to the Kitchen]]
-(set: $CI_stat_list to it + (a: $CI_Stat), $cookieing to it + (a: $Current_item))
-(set: $Current_item to &quot;None&quot;, $CI_Stat to &quot;None&quot;)</tw-passagedata><tw-passagedata pid="61" name="Serve them to george" tags="" position="1400,600" size="100,100">You hand your precious creations to George. 
+(set: $CI_stat_list to $CI_stat_list + (a: $CI_Stat), $cookieing to it + (a: $Current_item))
+(set: $Current_item to &quot;None&quot;, $CI_Stat to &quot;None&quot;)</tw-passagedata><tw-passagedata pid="59" name="Serve them to george" tags="" position="1400,600" size="100,100">You hand your precious creations to George. 
 ----
 (if:$Teeth_Damage is true)
 	[&quot;Um, this doesn&#39;t seem really eatible. Are you sure...?&quot; he seems worried about the objects inside. You reassure him and hand him your creation.]
@@ -877,40 +934,71 @@ You have created a: $cookiename
 (else:)
 	[&quot;There&#39;s no way I can...&quot; He seems worried about your mental health and sanity. However, you really don&#39;t care. You grab one from your baking sheet and forcefully feed it to him.]
 -----
-[[Results]]</tw-passagedata><tw-passagedata pid="62" name="Serve them to george" tags="判定プログラム" position="1400,600" size="100,100">(css: &quot;color: white;&quot;)[(align:&quot;==&gt;&lt;==&quot;)[&#39;George&#39;]]
+[[Results]]</tw-passagedata><tw-passagedata pid="60" name="Serve them to george" tags="判定プログラム" position="1400,600" size="100,100">(css: &quot;color: white;&quot;)[(align:&quot;==&gt;&lt;==&quot;)[&#39;George&#39;]]
 You hand your precious creations to George.
-[[Results]]</tw-passagedata><tw-passagedata pid="63" name="Serve them to george" tags="判定プログラム" position="1400,600" size="100,100">(css: &quot;color: white;&quot;)[(align:&quot;==&gt;&lt;==&quot;)[&#39;George&#39;]]
+[[Results]]</tw-passagedata><tw-passagedata pid="61" name="Serve them to george" tags="判定プログラム" position="1400,600" size="100,100">(css: &quot;color: white;&quot;)[(align:&quot;==&gt;&lt;==&quot;)[&#39;George&#39;]]
 You hand your precious creations to George.
-[[Results]]</tw-passagedata><tw-passagedata pid="64" name="Start Game" tags="" position="700,450" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Bedroom&#39;&#39;]]
+[[Results]]</tw-passagedata><tw-passagedata pid="62" name="Start Game" tags="" position="700,450" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Bedroom&#39;&#39;]]
 You wake up in your bed. You suddenly have the urge to make cookies for your best friend George. 
 [[Head to the Kitchen]]
 (set: $Current_item to &quot;None&quot;, $CI_Stat to &quot;None&quot;, $Status to &quot;None&quot;, $Taste to &quot;None&quot;, $Flammable to true)
 (set: $CI_stat_list to (a:), $cookieing to (a:), $Effect_list to (a:))
-(set:$Flammable to false, $Tooth_Damage to false, $Explosive to false)</tw-passagedata><tw-passagedata pid="65" name="Start Game" tags="" position="700,450" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Bedroom&#39;&#39;]]
+(set:$Flammable to false, $Tooth_Damage to false, $Explosive to false)</tw-passagedata><tw-passagedata pid="63" name="Start Game" tags="" position="700,450" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Bedroom&#39;&#39;]]
 You wake up in your bed. You suddenly have the urge to make cookies for your best friend George. 
 [[Head to the Kitchen]]
 (set: $Current_item to &quot;None&quot;, $CI_Stat to &quot;None&quot;, $Taste to &quot;None&quot;, $Flammable to true)
 (set: $CI_stat_list to (a:), $cookieing to (a:))
-(set:$Flammable to false, $Teeth_damage to false, $Explosive to false)</tw-passagedata><tw-passagedata pid="66" name="Start Game" tags="" position="700,450" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Bedroom&#39;&#39;]]
+(set:$Flammable to false, $Teeth_damage to false, $Explosive to false)</tw-passagedata><tw-passagedata pid="64" name="Start Game" tags="" position="700,450" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Bedroom&#39;&#39;]]
 You wake up in your bed. You suddenly have the urge to make cookies for your best friend George. 
 [[Head to the Kitchen]]
 (set: $Current_item to &quot;None&quot;, $CI_Stat to &quot;None&quot;, $Taste to &quot;None&quot;, $Flammable to true)
 (set: $CI_stat_list to (a:), $cookieing to (a:))
-(set:$Flammable to false, $Teeth_damage to false, $Explosive to false)</tw-passagedata><tw-passagedata pid="67" name="Startup" tags="" position="700,325" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[&#39;&#39;Tiantian&#39;s Cookie Simulator&#39;&#39;]
-[[Start Game]]</tw-passagedata><tw-passagedata pid="68" name="Startup" tags="" position="700,325" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[&#39;&#39;Tiantian&#39;s Cookie Simulator&#39;&#39;]
-[[Start Game]]</tw-passagedata><tw-passagedata pid="69" name="Startup" tags="" position="700,325" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[&#39;&#39;Tiantian&#39;s Cookie Simulator&#39;&#39;]
-[[Start Game]]</tw-passagedata><tw-passagedata pid="70" name="The pantry" tags="" position="1000,800" size="100,100">Should you look inside the fridge or the cabinet?
+(set:$Flammable to false, $Teeth_damage to false, $Explosive to false, $Radioactive to false, $BW to false, $Paint to false, $veg to 0, $dough to false)</tw-passagedata><tw-passagedata pid="65" name="Startup" tags="" position="700,325" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[&#39;&#39;Tiantian&#39;s Cookie Simulator&#39;&#39;]
+[[Start Game]]</tw-passagedata><tw-passagedata pid="66" name="Startup" tags="" position="700,325" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[&#39;&#39;Tiantian&#39;s Cookie Simulator&#39;&#39;]
+[[Start Game]]</tw-passagedata><tw-passagedata pid="67" name="Startup" tags="" position="700,325" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[&#39;&#39;Tiantian&#39;s Cookie Simulator&#39;&#39;]
+[[Start Game]]
+
+(set: $Death_count to 0)
+(set: $Firstcookie to false)
+(set: $Fithcookie to false)
+(set: $Tenthcookie to false)
+(set: $Fiftiethcookie to false)
+(set: $Hundredthcookie to false)
+(set: $Casualarson to false)
+(set: $Casualterrorism to false)
+(set: $Tastycookie to false)
+(set: $Verytastycookie to false)
+(set: $Badcookie to false)
+(set: $Awfulcookie to false)
+(set: $Dailydoseofnothing to false)
+(set: $Therules to false)
+(set: $Stayhealthy to false)
+(set: $Goodbyefriend to false)
+(set: $Nextplease to false)
+(set: $Trialanderror to false)
+(set: $Sacrificesmustbemade to false)
+(set: $Nuclearthreat to false)
+(set: $COVID to false)
+(set: $Dentist to false)
+(set: $Addictive to false)
+(set: $Extracookie to false)
+(set: $Supercookie to false)
+(set: $Megacookie to false)
+(set: $Ultracookie to false)
+(set: $Hypercookie to false)
+(set: $Minimalism to false)
+</tw-passagedata><tw-passagedata pid="68" name="The pantry" tags="" position="1000,800" size="100,100">Should you look inside the fridge or the cabinet?
 [[Fridge]]
 [[Cabinet]]
-[[Return to kitchen -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="71" name="The pantry" tags="" position="1000,800" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Kitchen&#39;&#39;]]
+[[Return to kitchen -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="69" name="The pantry" tags="" position="1000,800" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Kitchen&#39;&#39;]]
 Should you look inside the fridge or the cabinet?
 🧊[[Fridge]]
 📦[[Cabinet]]
-⏪[[Return to kitchen -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="72" name="The pantry" tags="" position="1000,800" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Kitchen&#39;&#39;]]
+⏪[[Return to kitchen -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="70" name="The pantry" tags="" position="1000,800" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;Kitchen&#39;&#39;]]
 Should you look inside the fridge or the cabinet?
 🧊[[Fridge]]
 📦[[Cabinet]]
-⏪[[Return to kitchen -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="73" name="Visit the black market" tags="" position="300,800" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;The black market&#39;&#39;]]
+⏪[[Return to kitchen -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="71" name="Visit the black market" tags="" position="300,800" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;The black market&#39;&#39;]]
 (link:&quot;Cocaine&quot;)[
 	(set: $Current_item to &quot;Cocaine&quot;, $CI_Stat to &quot;Powder&quot;, $Effects to &quot;Cocaine_overdose&quot;)
     (goto: &quot;BM buy&quot;)]
@@ -929,7 +1017,7 @@ Should you look inside the fridge or the cabinet?
 (link: &quot;Hand Gernades&quot;)[
 	(set:$Current_item to &quot;Hand Gernade&quot;, $CI_Stat to &quot;Special&quot;, $Effects to &quot;Body Explosion&quot;, $Explosive to true)
     (goto: &quot;BM buy&quot;)]
-[[Return to the kitchen. -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="74" name="Visit the black market" tags="" position="300,800" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;The black market&#39;&#39;]]
+[[Return to the kitchen. -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="72" name="Visit the black market" tags="" position="300,800" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;The black market&#39;&#39;]]
 (link:&quot;Cocaine&quot;)[
 	(set: $Current_item to &quot;Cocaine&quot;, $CI_Stat to &quot;Powder&quot;, $Cocaine_overdose to true)
     (goto: &quot;BM buy&quot;)]
@@ -948,26 +1036,26 @@ Should you look inside the fridge or the cabinet?
 (link: &quot;Hand Gernades&quot;)[
 	(set:$Current_item to &quot;Hand Gernade&quot;, $CI_Stat to &quot;Special&quot;, $Internal_explosion to true, $Explosive to true)
     (goto: &quot;BM buy&quot;)]
-[[Return to the kitchen. -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="75" name="Visit the black market" tags="" position="300,800" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;The black market&#39;&#39;]]
+[[Return to the kitchen. -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="73" name="Visit the black market" tags="" position="300,800" size="100,100">(align:&quot;===&gt;&lt;===&quot;)[(text-colour:white)[&#39;&#39;The black market&#39;&#39;]]
 (link:&quot;Cocaine&quot;)[
-	(set: $Current_item to &quot;Cocaine&quot;, $CI_Stat to &quot;Powder&quot;)
+	(set: $Current_item to &quot;Cocaine&quot;, $CI_Stat to &quot;Powder&quot;, $Drugs to true)
     (goto: &quot;BM buy&quot;)]
 (link:&quot;Marijuana&quot;)[
-	(set: $Current_item to &quot;Marijuana&quot;, $CI_Stat to &quot;Plant&quot;)
+	(set: $Current_item to &quot;Marijuana&quot;, $CI_Stat to &quot;Plant&quot;, $Drugs to true)
     (goto: &quot;BM buy&quot;)]
 (link:&quot;Alcohol&quot;)[
-	(set: $Current_item to &quot;Alcohol&quot;, $CI_Stat to &quot;Liquid&quot;)
+	(set: $Current_item to &quot;Alcohol&quot;, $CI_Stat to &quot;Liquid&quot; $Drugs to true)
     (goto: &quot;BM buy&quot;)]
 (link:&quot;Radioactive Waste&quot;)[
-	(set: $Current_item to &quot;Uranium&quot;, $CI_Stat to &quot;Special&quot;)
+	(set: $Current_item to &quot;Uranium&quot;, $CI_Stat to &quot;Special&quot;, $Radioactive to true)
     (goto: &quot;BM buy&quot;)]
 (link:&quot;Biological Weapon&quot;)[
-	(set: $Current_item to &quot;Botulinum Toxin&quot;, $CI_Stat to &quot;Special&quot;)
+	(set: $Current_item to &quot;Botulinum Toxin&quot;, $CI_Stat to &quot;Special&quot;, $BW to true)
     (goto: &quot;BM buy&quot;)]
 (link: &quot;Hand Gernades&quot;)[
 	(set:$Current_item to &quot;Hand Gernade&quot;, $CI_Stat to &quot;Special&quot;, $Explosive to true)
     (goto: &quot;BM buy&quot;)]
-[[Return to the kitchen. -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="76" name="Your room" tags="" position="1400,800" size="100,100">You find many different candidates for your cookies outside. 
+[[Return to the kitchen. -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="74" name="Your room" tags="" position="1400,800" size="100,100">You find many different candidates for your cookies outside. 
 (link:&quot;Paint&quot;)[
 	(set: $Current_item to &quot;Paint&quot;, $CI_Stat to &quot;Liquid&quot;, $Cookie_Attraction to $Cookie_attraction + 2)
     (goto: &quot;Room Get&quot;)]
@@ -987,7 +1075,7 @@ Should you look inside the fridge or the cabinet?
 	(set: $Current_item to &quot;Tissues&quot;, $CI_Stat to &quot;Solid&quot;, $Effect to &quot;Influenza&quot;)
     (goto: &quot;Room Get&quot;)]
 
-[[Go back to the kitchen -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="77" name="Your room" tags="" position="1400,800" size="100,100">You find many different candidates for your cookies outside. 
+[[Go back to the kitchen -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="75" name="Your room" tags="" position="1400,800" size="100,100">You find many different candidates for your cookies outside. 
 (link:&quot;Paint&quot;)[
 	(set: $Current_item to &quot;Paint&quot;, $CI_Stat to &quot;Liquid&quot;, $Cookie_Attraction to $Cookie_attraction + 2, $Liver_damage to true)
     (goto: &quot;Room Get&quot;)]
@@ -1007,21 +1095,21 @@ Should you look inside the fridge or the cabinet?
 	(set: $Current_item to &quot;Tissues&quot;, $CI_Stat to &quot;Solid&quot;, $COVID-23 to true)
     (goto: &quot;Room Get&quot;)]
 
-[[Go back to the kitchen -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="78" name="Your room" tags="" position="1400,800" size="100,100">You find many different candidates for your cookies outside. 
+[[Go back to the kitchen -&gt;Head to the Kitchen]]</tw-passagedata><tw-passagedata pid="76" name="Your room" tags="" position="1400,800" size="100,100">You find many different candidates for your cookies outside. 
 (link:&quot;Toenail clippings&quot;)[
 	(set: $Current_item to &quot;Nail&quot;, $CI_Stat to &quot;Solid&quot;, $Cookie_attraction to it-6)
     (goto: &quot;Room Get&quot;)]
 (link:&quot;Your gaming PC&quot;)[
-	(set: $Current_item to &quot;Computer&quot;, $CI_Stat to &quot;Solid&quot;, $Choking to true)
+	(set: $Current_item to &quot;Computer&quot;, $CI_Stat to &quot;Solid&quot;, $Cookie_attraction to it-3)
     (goto: &quot;Room Get&quot;)]
 (link:&quot;Flute&quot;)[
-	(set: $Current_item to &quot;Flute&quot;, $CI_Stat to &quot;Solid&quot;, $Teeth_damage to true)
+	(set: $Current_item to &quot;Flute&quot;, $CI_Stat to &quot;Solid&quot;, $Teeth_damage to true, $Cookie_attraction to it-4)
     (goto: &quot;Room Get&quot;)]
 (link:&quot;Moldy Reeds&quot;)[
-	(set: $Current_item to &quot;Reed&quot;, $CI_Stat to &quot;Solid&quot;, $Infection to true)
+	(set: $Current_item to &quot;Reed&quot;, $CI_Stat to &quot;Solid&quot;, $Infection to true, $Cookie_attraction to it -1)
     (goto: &quot;Room Get&quot;)]
 (link:&quot;Used tissues&quot;)[
-	(set: $Current_item to &quot;Tissues&quot;, $CI_Stat to &quot;Solid&quot;, $COVID23 to true)
+	(set: $Current_item to &quot;Tissues&quot;, $CI_Stat to &quot;Solid&quot;, $COVID23 to true, $Cookie_attraction to it-1)
     (goto: &quot;Room Get&quot;)]
 
 [[Go back to the kitchen -&gt;Head to the Kitchen]]</tw-passagedata></tw-storydata>
